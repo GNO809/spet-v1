@@ -31,3 +31,11 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Claude Code
+.claude/
+
+# Microsoft Word lock files
+~$*.docx
+~$*.xlsx
+~$*.pptx
