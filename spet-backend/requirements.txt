@@ -21,6 +21,8 @@ django-filter==24.2
 
 # PDF generation
 reportlab==4.2.0
+arabic-reshaper==3.0.0
+python-bidi==0.4.2
 xhtml2pdf==0.2.16
 
 # Excel generation
