@@ -58,7 +58,7 @@ services:
     staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
-        value: "https://spet-backend.onrender.com/api"
+        value: "https://spet-backend.onrender.com/api/v1"
     routes:
       - type: rewrite
         source: /*
