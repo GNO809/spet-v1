@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/logo-ufr.jfif" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SPET - Système de Planification des Emplois du Temps | UFR Sciences et Technologies | Université Iba Der Thiam de Thiès" />
+    <meta name="theme-color" content="#1a56db" />
+    <title>SPET | UFR Sciences et Technologies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Applique le thème avant le rendu React pour éviter le flash -->
+    <script>
+      (function() {
+        var t = localStorage.getItem('spet-theme');
+        if (t) document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+databases:
+  - name: spet-db
+    databaseName: spet_db
+    user: spet_user
+    plan: free
+    region: frankfurt
+
+services:
+  # ── Backend Django ─────────────────────────────────────────────
+  - type: web
+    name: spet-backend
+    env: python
+    region: frankfurt
+    plan: free
+    rootDir: spet-backend
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn spet.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: spet.settings.production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com,localhost"
+      - key: CORS_ALLOWED_ORIGINS
+        value: "https://spet-frontend.onrender.com"
+      - key: FRONTEND_URL
+        value: "https://spet-frontend.onrender.com"
+      - key: DB_NAME
+        fromDatabase:
+          name: spet-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: spet-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: spet-db
+          property: password
+      - key: DB_HOST
+        fromDatabase:
+          name: spet-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: spet-db
+          property: port
+
+  # ── Frontend React (Vite) ──────────────────────────────────────
+  - type: web
+    name: spet-frontend
+    env: static
+    region: frankfurt
+    plan: free
+    rootDir: spet-frontend
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        value: "https://spet-backend.onrender.com/api"
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
