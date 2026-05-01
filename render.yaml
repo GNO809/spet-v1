@@ -53,7 +53,6 @@ services:
   - type: web
     name: spet-frontend
     env: static
-    plan: free
     rootDir: spet-frontend
     buildCommand: "npm install && npm run build"
     staticPublishPath: ./dist
